@@ -157,74 +157,60 @@ class _HomepageState extends State<Homepage> {
                             onPressed: () {
                               _cityController.clear();
                               showModalBottomSheet(
-                                  context: context,
-                                  isScrollControlled: true,
-                                  builder: (context) => SingleChildScrollView(
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                            bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom,
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (context) => SingleChildScrollView(
+                                  controller: ModalScrollController.of(context),
+                                  child: Container(
+                                    height: size.height * 0.5,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 10,
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          width: 70,
+                                          child: Divider(
+                                            thickness: 3.5,
+                                            color: _myConst.primaryColor,
                                           ),
-                                          child: Container(
-                                            // height: size.height * 0.7,
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 20,
-                                              vertical: 10,
+                                        ),
+                                        const SizedBox(height: 10.0),
+                                        TextField(
+                                          onChanged: (searchText) {
+                                            fetchWeatherData(searchText);
+                                          },
+                                          controller: _cityController,
+                                          autofocus: true,
+                                          decoration: InputDecoration(
+                                            prefixIcon: Icon(
+                                              Icons.search,
+                                              color: _myConst.primaryColor,
                                             ),
-                                            child: Column(
-                                              children: [
-                                                SizedBox(
-                                                  width: 70,
-                                                  child: Divider(
-                                                    thickness: 3.5,
-                                                    color:
-                                                        _myConst.primaryColor,
-                                                  ),
-                                                ),
-                                                const SizedBox(height: 10.0),
-                                                TextField(
-                                                  onChanged: (searchText) {
-                                                    fetchWeatherData(
-                                                        searchText);
-                                                  },
-                                                  controller: _cityController,
-                                                  autofocus: false,
-                                                  decoration: InputDecoration(
-                                                    prefixIcon: Icon(
-                                                      Icons.search,
-                                                      color:
-                                                          _myConst.primaryColor,
-                                                    ),
-                                                    suffixIcon: GestureDetector(
-                                                      onTap: () =>
-                                                          _cityController
-                                                              .clear(),
-                                                      child: Icon(
-                                                        Icons.close,
-                                                        color: _myConst
-                                                            .primaryColor,
-                                                      ),
-                                                    ),
-                                                    hintText:
-                                                        "Search city e.g. India",
-                                                    focusedBorder:
-                                                        OutlineInputBorder(
-                                                      borderSide: BorderSide(
-                                                        color: _myConst
-                                                            .primaryColor,
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
+                                            suffixIcon: GestureDetector(
+                                              onTap: () =>
+                                                  _cityController.clear(),
+                                              child: Icon(
+                                                Icons.close,
+                                                color: _myConst.primaryColor,
+                                              ),
+                                            ),
+                                            hintText: "Search city e.g. India",
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: _myConst.primaryColor,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
                                             ),
                                           ),
                                         ),
-                                      ));
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              );
                             },
                             icon: const Icon(
                               Icons.keyboard_arrow_down,

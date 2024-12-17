@@ -19,7 +19,7 @@ class _HomepageState extends State<Homepage> {
   final Constants _myConst = Constants();
   static String apiKey = "9ed1364909e341a898c94732241512";
   String location = 'India';
-  String weatherIcon = 'heavyCloud.png';
+  String weatherIcon = 'heavycloudy.png';
   int temperature = 0;
   int windSpeed = 0;
   int humidity = 0;
@@ -112,7 +112,7 @@ class _HomepageState extends State<Homepage> {
             children: [
               Container(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 height: size.height * 0.7,
                 decoration: BoxDecoration(
                   gradient: _myConst.linearGradientBlue,
@@ -127,8 +127,8 @@ class _HomepageState extends State<Homepage> {
                   borderRadius: BorderRadius.circular(20.0),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -224,15 +224,55 @@ class _HomepageState extends State<Homepage> {
                             ),
                           ],
                         ),
-                        // ClipRRect(
-                        //   borderRadius: BorderRadius.circular(10.0),
-                        //   child: Image.asset(
-                        //     "assets/profile.png",
-                        //     width: 40,
-                        //     height: 40,
-                        //   ),
-                        // ),
                       ],
+                    ),
+                    SizedBox(
+                      height: 160,
+                      child: Image.asset("assets/" + weatherIcon),
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Text(
+                            temperature.toString(),
+                            style: TextStyle(
+                              fontSize: 80,
+                              fontWeight: FontWeight.bold,
+                              foreground: Paint()..shader = _myConst.shader,
+                            ),
+                          ),
+                        ),
+                        Text(
+                          "o",
+                          style: TextStyle(
+                            fontSize: 40,
+                            fontWeight: FontWeight.bold,
+                            foreground: Paint()..shader = _myConst.shader,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      currentWeatherStatus.toString(),
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Text(
+                      currentDate.toString(),
+                      style: TextStyle(
+                        color: Colors.white70,
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: const Divider(
+                        color: Colors.white70,
+                      ),
                     ),
                   ],
                 ),

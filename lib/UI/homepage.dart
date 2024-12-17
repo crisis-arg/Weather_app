@@ -274,6 +274,11 @@ class _HomepageState extends State<Homepage> {
                         color: Colors.white70,
                       ),
                     ),
+                    WeatherItem(
+                      value: windSpeed,
+                      unit: "km/h",
+                      imageUrl: "assets/windspeed.png",
+                    ),
                   ],
                 ),
               ),
@@ -284,3 +289,7 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
+
+
+
+ 

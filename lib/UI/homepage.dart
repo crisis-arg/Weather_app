@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:weather_app/components/weather_item.dart';
 import 'package:weather_app/constants.dart';
 
 class Homepage extends StatefulWidget {
@@ -274,11 +275,29 @@ class _HomepageState extends State<Homepage> {
                         color: Colors.white70,
                       ),
                     ),
-                    WeatherItem(
-                      value: windSpeed,
-                      unit: "km/h",
-                      imageUrl: "assets/windspeed.png",
-                    ),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          WeatherItem(
+                            value: windSpeed,
+                            unit: "km/h",
+                            imageUrl: "assets/windspeed.png",
+                          ),
+                          WeatherItem(
+                            value: humidity,
+                            unit: "%",
+                            imageUrl: "assets/humidity.png",
+                          ),
+                          WeatherItem(
+                            value: cloud,
+                            unit: "%",
+                            imageUrl: "assets/cloud.png",
+                          ),
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -289,7 +308,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-
-
-
- 

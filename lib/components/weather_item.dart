@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class WeatherItem extends StatelessWidget {
   final int value;
-
   final String unit;
   final String imageUrl;
 
@@ -14,26 +13,29 @@ class WeatherItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(10),
-            height: 60,
-            width: 60,
-            child: Image.asset(imageUrl),
+    return Column(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          height: 60,
+          width: 60,
+          decoration: BoxDecoration(
+            color: Colors.transparent,
+            borderRadius: BorderRadius.circular(15),
           ),
-          Text(
-            value.toString() + unit,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              color: Colors.white70,
-            ),
-          )
-        ],
-      ),
+          child: Image.asset(imageUrl),
+        ),
+        const SizedBox(
+          height: 8.0,
+        ),
+        Text(
+          value.toString() + unit,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white70,
+          ),
+        )
+      ],
     );
   }
 }

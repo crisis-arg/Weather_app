@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
@@ -122,7 +123,13 @@ class _HomepageState extends State<Homepage> {
                       color: _myConst.primaryColor.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(0, 3),
+                      offset: const Offset(4, 4),
+                    ),
+                    BoxShadow(
+                      color: _myConst.primaryColor.withOpacity(0.5),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(-4, -4),
                     ),
                   ],
                   borderRadius: BorderRadius.circular(20.0),
@@ -297,7 +304,92 @@ class _HomepageState extends State<Homepage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.only(top: 10),
+                height: size.height * 0.2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          "Today",
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            print('tapped');
+                          },
+                          child: Text(
+                            "Forecast",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                              color: _myConst.primaryColor,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    SizedBox(
+                      height: 110,
+                      child: ListView.builder(
+                        itemCount: hourlyWeatherForecast.length,
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          String currentTime =
+                              DateFormat('HH:mm:ss').format(DateTime.now());
+                          String currentHour = currentTime.substring(0, 2);
+                          String forecastTime = hourlyWeatherForecast[index]
+                                  ["time"]
+                              .substring(11, 16);
+                          String forecastHour = hourlyWeatherForecast[index]
+                                  ["time"]
+                              .substring(11, 13);
+                          String forecastWeatherName =
+                              hourlyWeatherForecast[index]["condition"]["text"];
+                          String forecastWetaherIcon =
+                              hourlyWeatherForecast[index]["condition"]["icon"];
+                          String forecastTemperature =
+                              hourlyWeatherForecast[index]["temp_c"]
+                                  .round()
+                                  .toString();
+                          return Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            margin: const EdgeInsets.only(right: 20),
+                            width: 65,
+                            decoration: BoxDecoration(
+                              color: currentHour == forecastHour
+                                  ? Colors.white
+                                  : _myConst.primaryColor,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: _myConst.primaryColor.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 1),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

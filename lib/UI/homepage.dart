@@ -361,12 +361,12 @@ class _HomepageState extends State<Homepage> {
                               .substring(11, 13);
                           String forecastWeatherName =
                               hourlyWeatherForecast[index]["condition"]["text"];
-                          String forecastWetaherIcon =
-                              hourlyWeatherForecast[index]["condition"]["icon"];
+                          String forecastWetaherIcon = forecastWeatherName
+                                  .replaceAll(" ", "")
+                                  .toLowerCase() +
+                              ".png";
                           String forecastTemperature =
-                              hourlyWeatherForecast[index]["temp_c"]
-                                  .round()
-                                  .toString();
+                              hourlyWeatherForecast[index]["temp_c"].toString();
                           return Container(
                             padding: const EdgeInsets.symmetric(vertical: 16),
                             margin: const EdgeInsets.only(right: 20),
@@ -387,6 +387,36 @@ class _HomepageState extends State<Homepage> {
                                   color: _myConst.primaryColor.withOpacity(0.2),
                                   blurRadius: 5,
                                   offset: const Offset(0, -3),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  forecastTime,
+                                  style: TextStyle(
+                                    fontSize: 17.0,
+                                    color: _myConst.greyColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Image.asset(
+                                  "assets/" + forecastWetaherIcon,
+                                  width: 20,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      "$forecastTemperature°C",
+                                      style: TextStyle(
+                                        fontSize: 17.0,
+                                        color: _myConst.greyColor,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),

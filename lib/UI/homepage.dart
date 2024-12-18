@@ -123,13 +123,13 @@ class _HomepageState extends State<Homepage> {
                       color: _myConst.primaryColor.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(4, 4),
+                      offset: const Offset(0, 4),
                     ),
                     BoxShadow(
                       color: _myConst.primaryColor.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: const Offset(-4, -4),
+                      offset: const Offset(0, -4),
                     ),
                   ],
                   borderRadius: BorderRadius.circular(20.0),
@@ -379,10 +379,14 @@ class _HomepageState extends State<Homepage> {
                                   BorderRadius.all(Radius.circular(50)),
                               boxShadow: [
                                 BoxShadow(
-                                  color: _myConst.primaryColor.withOpacity(0.5),
-                                  spreadRadius: 5,
+                                  color: _myConst.primaryColor.withOpacity(0.2),
                                   blurRadius: 5,
-                                  offset: const Offset(0, 1),
+                                  offset: const Offset(0, 3),
+                                ),
+                                BoxShadow(
+                                  color: _myConst.primaryColor.withOpacity(0.2),
+                                  blurRadius: 5,
+                                  offset: const Offset(0, -3),
                                 ),
                               ],
                             ),

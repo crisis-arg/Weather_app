@@ -44,7 +44,6 @@ class _DetailpageState extends State<Detailpage> {
         'minTemp': mintemp,
         'maxTemp': maxTemp,
       };
-      print(maxTemp);
       return forecastData;
     }
 
@@ -52,7 +51,71 @@ class _DetailpageState extends State<Detailpage> {
       backgroundColor: _myConst.primaryColor,
       appBar: AppBar(
         backgroundColor: _myConst.primaryColor,
-        title: Center(child: Text('Forecasts')),
+        title: Text('Forecasts'),
+        centerTitle: true,
+      ),
+      body: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(
+            bottom: 0,
+            // left: 0,
+            child: Container(
+              height: size.height * 0.75,
+              width: size.width,
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50.0),
+                  topRight: Radius.circular(50.0),
+                ),
+                color: Colors.white,
+              ),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    top: -54,
+                    right: 20,
+                    left: 20,
+                    child: Container(
+                      height: 300,
+                      width: size.width * .7,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.center,
+                          colors: [
+                            Color(0xffa9c1f5),
+                            Color(0xff6696f5),
+                          ],
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.withOpacity(0.1),
+                            blurRadius: 3,
+                            spreadRadius: -10,
+                            offset: const Offset(0, 25),
+                          ),
+                        ],
+                      ),
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Image.asset(
+                            "assets/" + getForecastWeather(0)['weatherIcon'],
+                            width: 150,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

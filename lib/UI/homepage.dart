@@ -32,7 +32,7 @@ class _HomepageState extends State<Homepage> {
   List dailyWeatherForecast = [];
 
   String currentWeatherStatus = '';
-
+  String localHour = '';
   //api call
   String searchWeatherApi =
       "https://api.weatherapi.com/v1/forecast.json?key=$apiKey&days=7&q=";
@@ -54,7 +54,8 @@ class _HomepageState extends State<Homepage> {
               DateTime.parse(locationData["localtime"].substring(0, 10));
           var newDate = DateFormat.MMMMEEEEd().format(parsedDate);
           currentDate = newDate;
-
+          localHour = locationData["localtime"].substring(11, 13);
+          print(localHour);
           //update weather
           currentWeatherStatus = currentWeather["condition"]["text"];
           weatherIcon =
@@ -352,9 +353,9 @@ class _HomepageState extends State<Homepage> {
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
-                          String currentTime =
-                              DateFormat('HH:mm:ss').format(DateTime.now());
-                          String currentHour = currentTime.substring(0, 2);
+                          // String currentTime =
+                          //     DateFormat('HH:mm:ss').format(DateTime.now());
+                          // String currentHour = currentTime.substring(0, 2);
                           String forecastTime = hourlyWeatherForecast[index]
                                   ["time"]
                               .substring(11, 16);
@@ -374,7 +375,7 @@ class _HomepageState extends State<Homepage> {
                             margin: const EdgeInsets.only(right: 20),
                             width: 65,
                             decoration: BoxDecoration(
-                              color: currentHour == forecastHour
+                              color: forecastHour == localHour
                                   ? Colors.white
                                   : _myConst.primaryColor,
                               borderRadius:

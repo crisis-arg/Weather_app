@@ -13,10 +13,13 @@ class WeatherItem extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(10),
+          // height: size.height * 0.1,
+          // width: size.width * 0.2,
           height: 60,
           width: 60,
           decoration: BoxDecoration(

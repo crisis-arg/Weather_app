@@ -283,6 +283,8 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ),
                     Container(
+                      // height: size.height * 0.15,
+                      // width: size.width * 0.9,
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

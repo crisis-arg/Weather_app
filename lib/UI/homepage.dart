@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:weather_app/UI/detailpage.dart';
 import 'package:weather_app/components/weather_item.dart';
 import 'package:weather_app/constants.dart';
 
@@ -55,7 +56,7 @@ class _HomepageState extends State<Homepage> {
           var newDate = DateFormat.MMMMEEEEd().format(parsedDate);
           currentDate = newDate;
           localHour = locationData["localtime"].substring(11, 13);
-          print(localHour);
+          // print(localHour);
           //update weather
           currentWeatherStatus = currentWeather["condition"]["text"];
           weatherIcon =
@@ -64,7 +65,7 @@ class _HomepageState extends State<Homepage> {
           windSpeed = currentWeather["wind_kph"].toInt();
           humidity = currentWeather["humidity"].toInt();
           cloud = currentWeather["temp_c"].toInt();
-          print(currentWeatherStatus);
+          // print(currentWeatherStatus);
 
           //daily forecast data
           dailyWeatherForecast = weatherData["forecast"]["forecastday"];
@@ -330,7 +331,13 @@ class _HomepageState extends State<Homepage> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            print('tapped');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Detailpage(
+                                          dailyForecastWeather:
+                                              dailyWeatherForecast,
+                                        )));
                           },
                           child: Text(
                             "Forecast",

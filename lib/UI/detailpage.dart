@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:weather_app/components/weather_item.dart';
 import 'package:weather_app/constants.dart';
 
 class Detailpage extends StatefulWidget {
@@ -47,6 +48,10 @@ class _DetailpageState extends State<Detailpage> {
       return forecastData;
     }
 
+    setState(() {
+      print(getForecastWeather(0)['forecasteDate']);
+    });
+
     return Scaffold(
       backgroundColor: _myConst.primaryColor,
       appBar: AppBar(
@@ -75,7 +80,7 @@ class _DetailpageState extends State<Detailpage> {
                 clipBehavior: Clip.none,
                 children: [
                   Positioned(
-                    top: -54,
+                    top: -50,
                     right: 20,
                     left: 20,
                     child: Container(
@@ -103,10 +108,100 @@ class _DetailpageState extends State<Detailpage> {
                       child: Stack(
                         clipBehavior: Clip.none,
                         children: [
-                          Image.asset(
-                            "assets/" + getForecastWeather(0)['weatherIcon'],
-                            width: 150,
+                          Positioned(
+                            top: -30,
+                            left: 10,
+                            child: Image.asset(
+                              "assets/" + getForecastWeather(0)['weatherIcon'],
+                              width: 150,
+                            ),
                           ),
+                          Positioned(
+                            top: 120,
+                            left: 50,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Text(
+                                getForecastWeather(0)['weatherName'],
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            bottom: 15,
+                            left: 20,
+                            child: Container(
+                              width: size.width * 0.8,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  WeatherItem(
+                                    value:
+                                        getForecastWeather(0)['maxWindSpeed'],
+                                    unit: "km/h",
+                                    imageUrl: "assets/windspeed.png",
+                                  ),
+                                  WeatherItem(
+                                    value: getForecastWeather(0)['avgHumidity'],
+                                    unit: "%",
+                                    imageUrl: "assets/humidity.png",
+                                  ),
+                                  WeatherItem(
+                                    value:
+                                        getForecastWeather(0)['chanceOfRain'],
+                                    unit: "%",
+                                    imageUrl: "assets/cloud.png",
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            top: 20,
+                            right: 20,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Text(
+                                    getForecastWeather(0)['minTemp'].toString(),
+                                    style: TextStyle(
+                                      fontSize: 80,
+                                      fontWeight: FontWeight.bold,
+                                      foreground: Paint()
+                                        ..shader = _myConst.shader,
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  "o",
+                                  style: TextStyle(
+                                    fontSize: 40,
+                                    fontWeight: FontWeight.bold,
+                                    foreground: Paint()
+                                      ..shader = _myConst.shader,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          // Positioned(
+                          //   top: 320,
+                          //   left: 0,
+                          //   child: SizedBox(
+                          //     child: ListView(
+                          //       physics: const BouncingScrollPhysics(),
+                          //     ),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),

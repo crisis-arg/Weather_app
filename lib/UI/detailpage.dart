@@ -56,7 +56,13 @@ class _DetailpageState extends State<Detailpage> {
       backgroundColor: _myConst.primaryColor,
       appBar: AppBar(
         backgroundColor: _myConst.primaryColor,
-        title: Text('Forecasts'),
+        title: Text(
+          'Forecasts',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         centerTitle: true,
       ),
       body: Stack(
@@ -85,7 +91,7 @@ class _DetailpageState extends State<Detailpage> {
                     left: 20,
                     child: Container(
                       height: size.height * 0.38,
-                      width: size.width * .7,
+                      width: size.width * 0.7,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
                         gradient: const LinearGradient(
@@ -251,7 +257,8 @@ class _DetailpageState extends State<Detailpage> {
                                               Text(
                                                 "${getForecastWeather(index)['maxTemp']}°",
                                                 style: TextStyle(
-                                                  color: _myConst.blackColor,
+                                                  color: _myConst.primaryColor
+                                                      .withOpacity(0.45),
                                                   fontSize: 30,
                                                   fontWeight: FontWeight.w600,
                                                 ),

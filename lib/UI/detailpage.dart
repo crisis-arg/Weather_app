@@ -55,6 +55,7 @@ class _DetailpageState extends State<Detailpage> {
     return Scaffold(
       backgroundColor: _myConst.primaryColor,
       appBar: AppBar(
+        scrolledUnderElevation: 0.0,
         backgroundColor: _myConst.primaryColor,
         title: Text(
           'Forecasts',

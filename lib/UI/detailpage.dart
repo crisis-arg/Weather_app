@@ -240,30 +240,22 @@ class _DetailpageState extends State<Detailpage> {
                                       ),
                                       Row(
                                         children: [
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "${getForecastWeather(index)['minTemp']}° ",
-                                                style: TextStyle(
-                                                  color: _myConst.greyColor,
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ],
+                                          Text(
+                                            "${getForecastWeather(index)['minTemp']}° ",
+                                            style: TextStyle(
+                                              color: _myConst.greyColor,
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "${getForecastWeather(index)['maxTemp']}°",
-                                                style: TextStyle(
-                                                  color: _myConst.primaryColor
-                                                      .withOpacity(0.45),
-                                                  fontSize: 30,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ],
+                                          Text(
+                                            "${getForecastWeather(index)['maxTemp']}°",
+                                            style: TextStyle(
+                                              color: _myConst.primaryColor
+                                                  .withOpacity(0.45),
+                                              fontSize: 30,
+                                              fontWeight: FontWeight.w600,
+                                            ),
                                           ),
                                         ],
                                       ),

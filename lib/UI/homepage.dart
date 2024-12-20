@@ -332,12 +332,13 @@ class _HomepageState extends State<Homepage> {
                         GestureDetector(
                           onTap: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Detailpage(
-                                          dailyForecastWeather:
-                                              dailyWeatherForecast,
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Detailpage(
+                                  dailyForecastWeather: dailyWeatherForecast,
+                                ),
+                              ),
+                            );
                           },
                           child: Text(
                             "Forecast",

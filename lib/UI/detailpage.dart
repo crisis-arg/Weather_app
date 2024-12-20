@@ -4,8 +4,8 @@ import 'package:weather_app/components/weather_item.dart';
 import 'package:weather_app/constants.dart';
 
 class Detailpage extends StatefulWidget {
-  final dailyForecastWeather;
-  const Detailpage({super.key, this.dailyForecastWeather});
+  final List dailyForecastWeather;
+  const Detailpage({super.key, required this.dailyForecastWeather});
 
   @override
   State<Detailpage> createState() => _DetailpageState();
@@ -193,16 +193,134 @@ class _DetailpageState extends State<Detailpage> {
                               ],
                             ),
                           ),
-                          // Positioned(
-                          //   top: 320,
-                          //   left: 0,
-                          //   child: SizedBox(
-                          //     child: ListView(
-                          //       physics: const BouncingScrollPhysics(),
-                          //     ),
-                          //   ),
-                          // ),
                         ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 270,
+                    right: 20,
+                    left: 20,
+                    child: SizedBox(
+                      height: size.height * .4,
+                      width: size.width * 0.9,
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: weatherData.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            elevation: 3.0,
+                            margin: const EdgeInsets.only(bottom: 20),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        getForecastWeather(
+                                            index)["forecasteDate"],
+                                        style: const TextStyle(
+                                          color: Color(0xff6696f5),
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "${getForecastWeather(index)['minTemp']}° ",
+                                                style: TextStyle(
+                                                  color: _myConst.greyColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "${getForecastWeather(index)['maxTemp']}°",
+                                                style: TextStyle(
+                                                  color: _myConst.blackColor,
+                                                  fontSize: 30,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                            'assets/' +
+                                                getForecastWeather(
+                                                    index)["weatherIcon"],
+                                            width: 30,
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Text(
+                                            getForecastWeather(
+                                                index)["weatherName"],
+                                            style: const TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            getForecastWeather(
+                                                        index)["chanceOfRain"]
+                                                    .toString() +
+                                                "%",
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 5,
+                                          ),
+                                          Image.asset(
+                                            'assets/lightrain.png',
+                                            width: 30,
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),

@@ -84,7 +84,7 @@ class _DetailpageState extends State<Detailpage> {
                     right: 20,
                     left: 20,
                     child: Container(
-                      height: 300,
+                      height: size.height * 0.38,
                       width: size.width * .7,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
@@ -198,12 +198,13 @@ class _DetailpageState extends State<Detailpage> {
                     ),
                   ),
                   Positioned(
-                    top: 270,
+                    top: size.height * 0.35,
+                    // bottom: size.height / 0.4,
                     right: 20,
                     left: 20,
                     child: SizedBox(
                       height: size.height * .4,
-                      width: size.width * 0.9,
+                      // width: size.width * 0.9,
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemCount: weatherData.length,

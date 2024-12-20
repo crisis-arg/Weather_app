@@ -355,7 +355,7 @@ class _HomepageState extends State<Homepage> {
                       height: 8,
                     ),
                     SizedBox(
-                      height: 110,
+                      height: size.height * 0.136,
                       child: ListView.builder(
                         itemCount: hourlyWeatherForecast.length,
                         scrollDirection: Axis.horizontal,
